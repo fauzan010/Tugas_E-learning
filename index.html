@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fauzan Rizkika Kurnia</title>
+    <style>
+        :root{
+            --primary:#0d47a1;
+            --accent:#64b5f6; /* biru muda klasik */
+            --bg-start:#e3f2fd;
+            --bg-end:#ffffff;
+            --card-bg: rgba(255,255,255,0.85);
+            --muted: #4a6572;
+        }
+
+        body{
+            margin:0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            color: var(--primary);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            background: linear-gradient(120deg, var(--bg-start), #f0f8ff 40%, var(--bg-end));
+            background-size: 400% 400%;
+            animation: bgShift 12s ease infinite;
+        }
+        @keyframes bgShift {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+
+        header{
+            background: linear-gradient(90deg, var(--accent), #90caf9); /* Biru muda klasik */
+            color:white;
+            padding:22px 18px;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            box-shadow: 0 3px 10px rgba(13,71,161,0.12);
+        }
+
+        .avatar{
+            width:64px;
+            height:64px;
+            border-radius:50%;
+            background: radial-gradient(circle at 30% 20%, #fff8, transparent),
+                        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(0,0,0,0.06));
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            color:white;
+            font-size:1.05rem;
+            flex-shrink:0;
+            border:2px solid rgba(255,255,255,0.12);
+        }
+
+        header h1{
+            margin:0;
+            font-size:1.4rem;
+            letter-spacing:0.3px;
+        }
+        header p.subtitle{
+            margin:2px 0 0 0;
+            font-size:0.9rem;
+            opacity:0.95;
+        }
+
+        main{
+            flex:1;
+            max-width:920px;
+            margin:20px auto;
+            padding:0 18px 36px;
+            width:100%;
+        }
+
+        .card{
+            background: var(--card-bg);
+            border-radius:12px;
+            padding:20px;
+            box-shadow: 0 6px 20px rgba(13,71,161,0.06);
+            transition: transform .18s ease, box-shadow .18s ease;
+            overflow:hidden;
+        }
+        .card:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(13,71,161,0.09);
+        }
+
+        h2{
+            margin-top:0;
+            color:var(--primary);
+            font-size:1.05rem;
+        }
+
+        p{
+            color:var(--muted);
+            line-height:1.6;
+            margin:10px 0;
+        }
+
+        .meta{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+            margin-top:8px;
+        }
+        .badge{
+            background: linear-gradient(90deg, rgba(13,71,161,0.12), rgba(33,150,243,0.08));
+            padding:6px 10px;
+            border-radius:999px;
+            font-weight:600;
+            color:var(--primary);
+            font-size:0.85rem;
+        }
+
+        .skills{
+            margin-top:12px;
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            align-items:center;
+        }
+        .skill{
+            min-width:120px;
+        }
+        .bar{
+            background:#e8f3ff;
+            border-radius:999px;
+            height:10px;
+            overflow:hidden;
+            margin-top:6px;
+        }
+        .bar > i{
+            display:block;
+            height:100%;
+            background: linear-gradient(90deg,#0d47a1,#42a5f5);
+            width:0%;
+            transition: width 800ms cubic-bezier(.2,.9,.2,1);
+        }
+
+        .actions{
+            margin-top:16px;
+            display:flex;
+            gap:10px;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+
+        button{
+            background-color:var(--primary);
+            color:white;
+            border:none;
+            padding:10px 16px;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:0.95rem;
+        }
+
+        #waktu{
+            margin-top:8px;
+            font-weight:700;
+            color:#0b3b91;
+        }
+
+        footer{
+            text-align:center;
+            background:linear-gradient(180deg,#e3f2fd, #bbdefb);
+            padding:10px;
+            color:var(--primary);
+            font-size:0.9rem;
+        }
+
+        .pulse{
+            animation: pulse 650ms ease;
+        }
+        @keyframes pulse{
+            0%{transform:scale(1);opacity:1}
+            50%{transform:scale(1.02);opacity:0.95}
+            100%{transform:scale(1);opacity:1}
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            opacity: 0;
+            transition: opacity 0.4s ease, bottom 0.4s ease;
+        }
+        .toast.show {
+            opacity: 1;
+            bottom: 50px;
+        }
+
+        @media (max-width:520px){
+            header{padding:14px}
+            .avatar{width:52px;height:52px;font-size:0.95rem}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="avatar">FR</div>
+        <div>
+            <h1>Fauzan Rizkika Kurnia</h1>
+            <p class="subtitle">Mahasiswa • Penggemar Pemrograman • Pembuat Proyek Sederhana</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="card" role="region" aria-labelledby="intro-heading">
+            <h2 id="intro-heading">Perkenalan Diri</h2>
+
+            <p id="intro">Halo! Saya Fauzan Rizkika Kurnia, mahasiswa yang tertarik mempelajari dunia pemrograman dan teknologi. Saya senang bereksperimen dengan bahasa seperti Java dan C serta membuat antarmuka sederhana.</p>
+
+            <p>Saat ini saya aktif mempelajari pengembangan aplikasi GUI dan Android Native. Saya percaya belajar lewat proyek nyata membantu memahami konsep lebih cepat.</p>
+
+            <p>Tujuan saya adalah menjadi software developer yang dapat membuat aplikasi berguna bagi banyak orang dan terus meningkatkan kemampuan lewat kolaborasi.</p>
+
+            <h3 style="margin-top:12px;color:var(--muted);font-size:0.95rem">Beberapa keahlian singkat</h3>
+            <div class="meta">
+                <span class="badge">Java</span>
+                <span class="badge">C</span>
+                <span class="badge">Android</span>
+                <span class="badge">UI/UX</span>
+            </div>
+
+            <div class="skills">
+                <div class="skill">
+                    <div style="font-size:0.85rem;color:var(--muted)">Java</div>
+                    <div class="bar"><i data-w="85%"></i></div>
+                </div>
+                <div class="skill">
+                    <div style="font-size:0.85rem;color:var(--muted)">C</div>
+                    <div class="bar"><i data-w="70%"></i></div>
+                </div>
+                <div class="skill">
+                    <div style="font-size:0.85rem;color:var(--muted)">Android</div>
+                    <div class="bar"><i data-w="60%"></i></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="aksiBtn">Tampilkan Waktu & Kejutan</button>
+                <div id="waktu"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="tahun"></span> | Website sederhana oleh Fauzan Rizkika Kurnia
+    </footer>
+
+    <div id="toast" class="toast">Halo Fauzan , tetap semangat belajar!</div>
+
+    <script>
+        document.getElementById('tahun').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.bar > i').forEach(function(el){
+                const w = el.getAttribute('data-w') || '50%';
+                setTimeout(()=> el.style.width = w, 200 + Math.random()*400);
+            });
+        });
+
+        const greetings = [
+            "Salam! Saya Fauzan — terus belajar dan berlatih membuat proyek nyata.",
+            "Hai! Senang bertemu di halaman sederhana ini.",
+            "Halo! Yuk bangun proyek bersama!"
+        ];
+        let greetIndex = 0;
+
+        const aksiBtn = document.getElementById('aksiBtn');
+        const intro = document.getElementById('intro');
+        const waktuEl = document.getElementById('waktu');
+        const toast = document.getElementById('toast');
+
+        aksiBtn.addEventListener('click', function(){
+            const now = new Date();
+            waktuEl.textContent = 'Waktu sekarang: ' + now.toLocaleString();
+
+            greetIndex = (greetIndex + 1) % greetings.length;
+            intro.textContent = greetings[greetIndex];
+            intro.classList.add('pulse');
+            setTimeout(()=> intro.classList.remove('pulse'), 700);
+
+            toast.textContent = "Tombol ditekan! Waktu diperbarui: " + now.toLocaleTimeString();
+            toast.classList.add('show');
+            setTimeout(()=> toast.classList.remove('show'), 2500);
+        });
+    </script>
+</body>
+</html>
